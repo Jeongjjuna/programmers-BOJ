@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 def find_fail_rate(i, count, prefix_sum):
     if prefix_sum[i] == 0:
         return 0
@@ -9,7 +6,7 @@ def find_fail_rate(i, count, prefix_sum):
 
 def solution(N, stages):
     
-    # 각 스테이지에 멈춰있는 사람의 수를 카운트 한다.
+    # 각 개수의 합 구하기
     # count = [1, 3, 2, 1, 0 ,1]
     count = [0] * (N + 2)
     for s in stages:
@@ -25,7 +22,6 @@ def solution(N, stages):
     # i번 스테이지와, i번 스테이지의 실패율을 쌍으로 구한다.
     fail_rates = []
     for i in range(1, N + 1):
-        # i번 스테이지의 실패율을 구한다.
         fail_rate = find_fail_rate(i, count, prefix_sum)
         fail_rates.append((fail_rate, i))
     
@@ -37,8 +33,3 @@ def solution(N, stages):
 
     
     return [elem[1] for elem in fail_rates]
-
-
-
-
-
