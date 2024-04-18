@@ -23,16 +23,27 @@ def solution(s):
     dict_data = [to_dict(elem) for elem in parsed_data]
     
     # 길이 오름차순으로 정렬
-    # [{2}, {2,1}, {1,2,3},{1,2,4,3}]
+    # [{2}, {2,1}, {1,2,3}, {1,2,4,3}]
     dict_data.sort(key = lambda x : len(x))
        
     # 뺀값을 answer에 넣기
     
+    
+    '''
+    실패 케이스
+    '''
     # first_elem = dict_data[0].pop()
     # answer = [first_elem]
-    answer = list(dict_data[0])
+    
+    '''
+    성공 케이스
+    '''
+    answer = list(dict_data[0]) 
+
+    
     for i in range(len(dict_data) - 1):
         elem = dict_data[i + 1] - dict_data[i]
         answer.append(elem.pop())
+        
         
     return answer
