@@ -1,4 +1,4 @@
 fun main() {
-    val sum = readLine()!!.split(" ").sumOf { it.toInt() }
-    println(sum)
+    val nums = readLine()!!.split(" ").map { it.toInt() }
+    println(nums[0] + nums[1])
 }
