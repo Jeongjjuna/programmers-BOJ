@@ -13,7 +13,6 @@ class Solution {
             reportLog.put(id, new HashSet<>());
         }
         
-        
         Map<String, Integer> reportCount = new HashMap<>();
         for (String r : report) {
             String[] fromAndTo = r.split(" ");
@@ -31,7 +30,6 @@ class Solution {
         }
         
         
-        
         Set<String> reported = new HashSet<>();
         for (Map.Entry<String, Integer> entry : reportCount.entrySet()) {
             if (k <= entry.getValue()) {
@@ -39,25 +37,17 @@ class Solution {
             }
         }
         
-        int[] answer = new int[id_list.length];
-
-        
-//         System.out.println(reportLog);
-//         System.out.println(reportCount);
-//         System.out.println(reported);
-        
+        int[] answer = new int[id_list.length];    
         for (int i = 0; i < id_list.length; i++) {
-            int cnt = 0;
             
+            int cnt = 0;    
             for (String target : reportLog.get(id_list[i])) {
                 if (reported.contains(target)) {
                     cnt += 1;
                 }
             }
-            
             answer[i] = cnt;
         }
-
 
         return answer;
     }
