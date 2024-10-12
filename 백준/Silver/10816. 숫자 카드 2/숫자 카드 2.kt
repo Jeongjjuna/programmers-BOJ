@@ -14,8 +14,9 @@ fun main() = with(System.`in`.bufferedReader()) {
 
     // 개수 출력
     val answer = StringBuilder()
+    var cnt = 0
     for (target in targets) {
-        val cnt = count.getOrDefault(target, 0)
+        cnt = count.getOrDefault(target, 0)
         answer.append(cnt).append(" ")
     }
 
