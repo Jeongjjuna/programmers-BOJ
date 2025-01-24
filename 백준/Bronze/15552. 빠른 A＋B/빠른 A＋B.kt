@@ -1,29 +1,46 @@
-import java.io.BufferedReader
-import java.io.BufferedWriter
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import java.util.StringTokenizer
+import java.io.*
 
-/**
- * kotlin 빠른 입출력
- */
-val br = BufferedReader(InputStreamReader(System.`in`))
-val bw = BufferedWriter(OutputStreamWriter(System.out))
+private var N = 0
+private var a = 0
+private var b = 0
 
 fun main() {
+    val sb = StringBuilder()
 
-    repeat(br.readLine().toInt()) {
-        val st = StringTokenizer(br.readLine())
-        val a = st.nextToken().toInt()
-        val b = st.nextToken().toInt()
-        val sum = a + b
+    BufferedReader(InputStreamReader(System.`in`)).use {
+        val scan = FastReader(it)
 
-        bw.write(sum.toString())
-        bw.newLine()
+        N = scan.nextInt()
+        repeat(N) {
+            a = scan.nextInt()
+            b = scan.nextInt()
+            sb.append(a + b).appendLine()
+        }
     }
 
-    bw.flush()
+    println(sb)
+}
 
-    br.close()
-    bw.close()
+fun input() {
+    BufferedReader(InputStreamReader(System.`in`)).use {
+        val scan = FastReader(it)
+    }
+}
+
+class FastReader(private val reader: BufferedReader) {
+    private val tokenizer = StreamTokenizer(reader)
+
+    fun nextString(): String {
+        tokenizer.nextToken()
+        return tokenizer.sval
+    }
+
+    fun nextInt(): Int {
+        tokenizer.nextToken()
+        return tokenizer.nval.toInt()
+    }
+
+    fun nextLine(): String {
+        return reader.readLine()
+    }
 }
