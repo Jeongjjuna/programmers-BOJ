@@ -4,8 +4,10 @@ import java.util.*;
 public class Main {
     private static int N;
 
-    public static void main(String[] args) {
-        FastReader scan = new FastReader();
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        FastReader scan = new FastReader(reader);
+
         N = scan.nextInt();
 
         StringBuilder sb = new StringBuilder();
@@ -22,40 +24,27 @@ public class Main {
     }
 
     static class FastReader {
-        private final BufferedReader br;
-        private StringTokenizer st;
+        private final BufferedReader reader;
+        private final StreamTokenizer tokenizer;
 
-        public FastReader() {
-            this.br = new BufferedReader(new InputStreamReader(System.in));
+        public FastReader(BufferedReader reader) {
+            this.reader = reader;
+            this.tokenizer = new StreamTokenizer(reader);
         }
 
-        String nextString() {
-            while (st == null || !st.hasMoreElements()) {
-                try {
-                    st = new StringTokenizer(br.readLine());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            return st.nextToken();
+        public String nextString() throws IOException {
+            tokenizer.nextToken();
+            return tokenizer.sval;
         }
 
-        int nextInt() {
-            return Integer.parseInt(nextString());
+        public int nextInt() throws IOException {
+            tokenizer.nextToken();
+            return (int) tokenizer.nval;
         }
 
-        long nextLong() {
-            return Long.parseLong(nextString());
-        }
-
-        String nextLine() {
-            String str = "";
-            try {
-                str = br.readLine();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            return str;
+        public String nextLine() throws IOException {
+            return reader.readLine();
         }
     }
+
 }
