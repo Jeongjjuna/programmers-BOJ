@@ -23,16 +23,16 @@ public class Main {
 
         // ARR 를 백트래킹으로 탐색해보자.
         int idx = 0;
-        dfs(idx, 0);
+        int sum = 0; // 현재까지 부분수열 합
+        boolean isPossible = false;
+        dfs(idx, sum, isPossible);
 
         System.out.println(ANS);
     }
 
-    private static void dfs(int idx, int sum) {
+    private static void dfs(int idx, int sum, boolean isPossible) {
         if (visited.size() == N) {
-            boolean allZero = visited.stream()
-                    .allMatch(v -> v == 0);
-            if (allZero) return;
+            if (!isPossible) return;
 
             if (sum == S) {
                 ANS += 1;
@@ -42,12 +42,12 @@ public class Main {
 
         // idx 가 부분수열에 포함
         visited.add(1);
-        dfs(idx + 1, sum + ARR[idx]);
+        dfs(idx + 1, sum + ARR[idx], true);
         visited.remove(visited.size() - 1);
 
         // idx 가 부분수열에 미포함
         visited.add(0);
-        dfs(idx + 1, sum);
+        dfs(idx + 1, sum, isPossible);
         visited.remove(visited.size() - 1);
     }
 }
