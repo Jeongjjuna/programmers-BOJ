@@ -1,15 +1,26 @@
-# 변수 입력 및 선언
+import sys
+
+input = sys.stdin.readline
+
+# 변수 및 입력 선언
 n = int(input())
-n_arr = list(map(int, input().split()))
+arr = list(map(int, input().split()))
 m = int(input())
-m_arr = list(map(int, input().split()))
+targets = list(map(int, input().split()))
 
-d = dict()
-for elem in n_arr:
-    d[elem] = 1
+# 방법1. hash
+def main():
+    exist = dict()
+    for elem in arr:  # O(100000)
+        exist[elem] = True
 
-for elem in m_arr:
-    if elem in d:
-        print(1)
-    else:
-        print(0)
+    for target in targets:  # O(100000)
+        # arr 에 target 이 있는지.
+        if (target in exist):
+            print(1)
+        else:
+            print(0)
+
+
+if __name__ == "__main__":
+    main()
