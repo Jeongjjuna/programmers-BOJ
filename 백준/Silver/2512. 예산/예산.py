@@ -1,46 +1,36 @@
-import sys; input = sys.stdin.readline
+import sys
 
-def can_go(arr, mid, m):
-    s = 0
-    for elem in arr:
-        if elem < mid:
-            s += elem
-        else:
-            s += mid
+input = sys.stdin.readline
 
-    if s <= m:
-        return True
-    return False
+# 변수 및 입력 선언
+n = int(input())  # 지방의 수
+arr = list(map(int, input().split()))  # 지방 예산 요청
+m = int(input())  # 총 예산수
 
-def binary_search(arr, m, start, end):
+
+def main():
+    # 오름차순
+    arr.sort()
+
     answer = 0
+    start, end = 0, max(arr)
     while start <= end:
         mid = (start + end) // 2
-        # 상한액 배정으로 가능하다면
-        if can_go(arr, mid, m):
-            start = mid + 1
+
+        sum = 0
+        for elem in arr:
+            sum += min(mid, elem)
+
+        if sum <= m:
+            # 가능
             answer = max(answer, mid)
+            start = mid + 1
         else:
+            # 불가능
             end = mid - 1
 
-    return answer
-
-def main(n, arr, m):
-    # 모든 요청이 배정될 수 있는 경우 배정한다.
-    if sum(arr) <= m:
-        print(max(arr))
-        return
-
-    # 특정한 정수 상한액을 정한다.
-    mid = max(arr)
-    arr.sort()
-    result = binary_search(arr, m, 0, mid)
-    print(result)
+    print(answer)
 
 
-# 변수 입력 및 선언
-n = int(input()) # 3 <= <= 10,000
-arr = list(map(int, input().split()))
-m = int(input()) # n <= <= 1,000,000,000
-
-main(n, arr, m)
+if __name__ == "__main__":
+    main()
